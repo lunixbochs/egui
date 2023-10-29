@@ -313,9 +313,9 @@ impl CodeTheme {
 // ----------------------------------------------------------------------------
 
 #[cfg(feature = "syntect")]
-struct Highlighter {
-    ps: syntect::parsing::SyntaxSet,
-    ts: syntect::highlighting::ThemeSet,
+pub struct Highlighter {
+    pub ps: syntect::parsing::SyntaxSet,
+    pub ts: syntect::highlighting::ThemeSet,
 }
 
 #[cfg(feature = "syntect")]
@@ -331,7 +331,7 @@ impl Default for Highlighter {
 
 impl Highlighter {
     #[allow(clippy::unused_self, clippy::unnecessary_wraps)]
-    fn highlight(&self, theme: &CodeTheme, code: &str, lang: &str) -> LayoutJob {
+    pub fn highlight(&self, theme: &CodeTheme, code: &str, lang: &str) -> LayoutJob {
         self.highlight_impl(theme, code, lang).unwrap_or_else(|| {
             // Fallback:
             LayoutJob::simple(
